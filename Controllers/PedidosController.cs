@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PedidoApi.Data;
 using PedidoApi.Models;
+using Swashbuckle.AspNetCore.Annotations; // Adicione este using
 
 namespace PedidoApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("orders")]
     [ApiController]
+    [Tags("Orders")] // <-- Adicione esta linha para mudar o nome da tag no Swagger
     public class PedidosController : ControllerBase
     {
         private readonly PedidoContext _context;

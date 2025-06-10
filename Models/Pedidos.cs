@@ -13,7 +13,7 @@ namespace PedidoApi.Models
         public string Cliente { get; set; } = string.Empty;
         public DateTime Data { get; set; }
         public string Produto { get; set; } = string.Empty;
-        public int Valor { get; set; }
+        public decimal Valor { get; set; }
         public StatusPedido Status { get; set; } = StatusPedido.Pendente;
     }
 }

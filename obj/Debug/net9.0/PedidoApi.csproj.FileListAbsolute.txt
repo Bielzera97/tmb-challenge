@@ -126,3 +126,4 @@ C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\obj\Debug\net9
 C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\obj\Debug\net9.0\PedidoApi.sourcelink.json
