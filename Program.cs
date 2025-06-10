@@ -8,6 +8,15 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<PedidoContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Habilita CORS para qualquer origem
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy => policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+});
+
 // swagger com informações customizadas
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -37,7 +46,10 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
+
+// Aplica o CORS para qualquer origem
+app.UseCors("AllowAll");
+
 app.MapControllers();
 app.Run();
 
