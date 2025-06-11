@@ -40,6 +40,13 @@ builder.Services.AddSignalR(); // Adicione esta linha
 
 var app = builder.Build();
 
+// Garante que as migrations são aplicadas ao iniciar
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<PedidoContext>();
+    db.Database.Migrate();
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

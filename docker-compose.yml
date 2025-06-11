@@ -4,7 +4,7 @@ services:
   api:
     build: .
     ports:
-      - "5000:80"
+      - "5000:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=tmbDB;Username=postgres;Password=1234;SearchPath=public
