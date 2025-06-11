@@ -11,10 +11,12 @@ builder.Services.AddDbContext<PedidoContext>(opt =>
 // Habilita CORS para qualquer origem
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        policy => policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+    options.AddPolicy("AllowFrontend",
+        policy => policy
+            .WithOrigins("http://localhost:3000") // coloque aqui a URL do seu front-end
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials());
 });
 
 // swagger com informações customizadas
@@ -34,6 +36,8 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services.AddSignalR(); // Adicione esta linha
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -46,11 +50,12 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-
-// Aplica o CORS para qualquer origem
-app.UseCors("AllowAll");
+// Aplica o CORS para o front-end
+app.UseCors("AllowFrontend");
 
 app.MapControllers();
+app.MapHub<PedidoApi.Hubs.PedidoHub>("/hub/pedidos"); // Adicione esta linha
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PedidoApi.Data;
 using PedidoApi.Models;
-using Swashbuckle.AspNetCore.Annotations; // Adicione este using
+using PedidoApi.Hubs;
+using Swashbuckle.AspNetCore.Annotations;
+using Microsoft.AspNetCore.SignalR; // Adicione aqui
 
 namespace PedidoApi.Controllers
 {
@@ -12,10 +14,12 @@ namespace PedidoApi.Controllers
     public class PedidosController : ControllerBase
     {
         private readonly PedidoContext _context;
+        private readonly IHubContext<PedidoHub> _hubContext;
 
-        public PedidosController(PedidoContext context)
+        public PedidosController(PedidoContext context, IHubContext<PedidoHub> hubContext)
         {
             _context = context;
+            _hubContext = hubContext;
         }
 
         [HttpGet]
@@ -37,6 +41,10 @@ namespace PedidoApi.Controllers
         {
             _context.Pedidos.Add(pedido);
             await _context.SaveChangesAsync();
+
+            // Notifica todos os clientes sobre a criação do pedido
+            await _hubContext.Clients.All.SendAsync("PedidoAtualizado", pedido);
+
             return CreatedAtAction(nameof(GetPedido), new { id = pedido.Id }, pedido);
         }
 
@@ -45,8 +53,23 @@ namespace PedidoApi.Controllers
         {
             if (id != pedido.Id) return BadRequest();
 
+            var pedidoExistente = await _context.Pedidos.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+            if (pedidoExistente == null) return NotFound();
+
+            bool statusMudou = pedidoExistente.Status != pedido.Status;
+
             _context.Entry(pedido).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
+            // Notifica todos os clientes sobre a atualização do pedido
+            await _hubContext.Clients.All.SendAsync("PedidoAtualizado", pedido);
+
+            // Se quiser manter a notificação específica para mudança de status, pode deixar também:
+            if (statusMudou)
+            {
+                await _hubContext.Clients.All.SendAsync("StatusPedidoAlterado", new { pedido.Id, NovoStatus = pedido.Status });
+            }
+
             return NoContent();
         }
 
@@ -58,6 +81,10 @@ namespace PedidoApi.Controllers
 
             _context.Pedidos.Remove(pedido);
             await _context.SaveChangesAsync();
+
+            // Notifica todos os clientes sobre a exclusão do pedido
+            await _hubContext.Clients.All.SendAsync("PedidoAtualizado", id);
+
             return NoContent();
         }
     }

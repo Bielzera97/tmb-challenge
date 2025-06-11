@@ -127,3 +127,11 @@ C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9
 C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\obj\Debug\net9.0\PedidoApi.sourcelink.json
+C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\Azure.Core.dll
+C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\Azure.Core.Amqp.dll
+C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\Azure.Messaging.ServiceBus.dll
+C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\Microsoft.Azure.Amqp.dll
+C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\System.ClientModel.dll
+C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\System.Memory.Data.dll
+C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\ramos\OneDrive\Área de Trabalho\tmb-challenge\PedidoApi\bin\Debug\net9.0\System.Net.WebSockets.WebSocketProtocol.dll
