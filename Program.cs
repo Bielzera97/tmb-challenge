@@ -13,7 +13,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy => policy
-            .WithOrigins("http://localhost:3000") // coloque aqui a URL do seu front-end
+            .WithOrigins(
+                "http://localhost:3000",
+                "https://tmb-frontend-five.vercel.app"
+            )
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials());
